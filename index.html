@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f6f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1416" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Reinventing the Wheel — Free Apps, No Accounts, No Catch</title>
+    <meta
+      name="description"
+      content="A small, growing collection of apps that are free, don't want your account, and don't sell your data. Setoff is the first. More are on the way."
+    />
+    <link rel="canonical" href="https://reinventingthewheel.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Reinventing the Wheel" />
+    <meta property="og:title" content="Reinventing the Wheel — Free Apps, No Accounts, No Catch" />
+    <meta
+      property="og:description"
+      content="A small, growing collection of apps that are free, don't want your account, and don't sell your data. Setoff is the first. More are on the way."
+    />
+    <meta property="og:url" content="https://reinventingthewheel.app/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reinventing the Wheel — Free Apps, No Accounts, No Catch" />
+    <meta
+      name="twitter:description"
+      content="A small, growing collection of apps that are free, don't want your account, and don't sell your data."
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Reinventing the Wheel",
+        "url": "https://reinventingthewheel.app/",
+        "description": "A small, growing collection of free apps built without subscriptions, account walls, or data collection.",
+        "sameAs": ["https://setoff.at/"]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: hsl(210 20% 97%);
+        --fg: hsl(220 20% 12%);
+        --card: hsl(0 0% 100%);
+        --muted: hsl(215 10% 42%);
+        --border: hsl(210 15% 88%);
+        --accent: hsl(190 75% 28%);
+        --accent-soft: hsl(190 75% 28% / 0.1);
+        --accent-fg: hsl(0 0% 100%);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: hsl(220 18% 9%);
+          --fg: hsl(210 20% 96%);
+          --card: hsl(220 16% 13%);
+          --muted: hsl(215 12% 65%);
+          --border: hsl(220 14% 20%);
+          --accent: hsl(190 70% 50%);
+          --accent-soft: hsl(190 70% 50% / 0.14);
+          --accent-fg: hsl(220 20% 9%);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { background: var(--bg); }
+      body {
+        margin: 0;
+        font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+      .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+      a { color: inherit; }
+
+      header.site { border-bottom: 1px solid var(--border); }
+      .site-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
+      }
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        color: var(--fg);
+      }
+      .wordmark img { width: 22px; height: 22px; display: block; }
+      .site-bar nav { display: flex; align-items: center; gap: 20px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 6px;
+        padding: 9px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+      }
+      .btn-accent { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+      .nav-link { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--muted); }
+      .nav-link:hover { color: var(--fg); }
+
+      .hero { position: relative; padding: 96px 0 72px; overflow: hidden; }
+      .hero-motif {
+        position: absolute;
+        top: 50%;
+        right: -140px;
+        transform: translateY(-50%);
+        width: 560px;
+        height: 560px;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        .hero-motif { opacity: 0.12; }
+      }
+      .hero-inner { position: relative; max-width: 620px; }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+      .eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+      h1 {
+        font-size: 46px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        margin: 0 0 20px;
+        text-wrap: balance;
+      }
+      .lede { font-size: 18px; color: var(--muted); max-width: 52ch; margin: 0; }
+
+      section { padding: 64px 0; }
+      section.alt { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+      .section-label {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      h2 { font-size: 26px; letter-spacing: -0.01em; margin: 0 0 16px; text-wrap: balance; }
+      .section-copy { color: var(--muted); font-size: 16px; max-width: 58ch; margin: 0 0 32px; }
+
+      .app-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+      }
+      .app-card .meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+      .app-card h3 { font-size: 20px; margin: 0; }
+      .status-chip {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-soft);
+        padding: 3px 8px;
+        border-radius: 999px;
+      }
+      .app-card p { margin: 0; color: var(--muted); font-size: 15px; max-width: 42ch; }
+      .app-card .cta { flex-shrink: 0; }
+
+      .whats-next {
+        margin-top: 20px;
+        padding: 18px 20px;
+        border: 1px dashed var(--border);
+        border-radius: 10px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .manifesto { max-width: 620px; border-left: 3px solid var(--accent); padding-left: 26px; }
+      .manifesto p { font-size: 17px; line-height: 1.7; margin: 0 0 16px; }
+      .manifesto .sign-off {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 20px;
+      }
+
+      .criteria { display: grid; gap: 16px; max-width: 620px; }
+      .criterion { display: flex; gap: 16px; align-items: flex-start; }
+      .criterion .num {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 13px;
+        color: var(--accent);
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 6px;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .criterion p { margin: 0; font-size: 15px; }
+      .tell-me {
+        margin-top: 28px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--accent);
+      }
+      .tell-me:hover { text-decoration: underline; }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 0 40px;
+      }
+      footer .foot-top {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      footer .foot-links { display: flex; gap: 18px; }
+      footer a { text-decoration: none; color: var(--muted); font-size: 13px; }
+      footer a:hover { color: var(--fg); }
+      footer .disclosure {
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 12px;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+      }
+
+      @media (max-width: 760px) {
+        h1 { font-size: 34px; }
+        .hero { padding: 64px 0 48px; }
+        .hero-motif { width: 380px; height: 380px; right: -160px; opacity: 0.06; }
+        .app-card { flex-direction: column; align-items: flex-start; }
+        .app-card .cta { width: 100%; }
+        .app-card .cta .btn { width: 100%; justify-content: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap site-bar">
+        <a class="wordmark" href="/">
+          <img src="/favicon.svg" alt="" />
+          Reinventing the Wheel
+        </a>
+        <nav>
+          <a class="nav-link" href="#apps">Apps</a>
+          <a class="btn btn-accent" href="https://setoff.at" target="_blank" rel="noopener">Try Setoff →</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="wrap hero">
+      <svg class="hero-motif" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--accent)" stroke-width="1.2" />
+        <circle cx="50" cy="50" r="10" fill="none" stroke="var(--accent)" stroke-width="1.2" />
+        <g stroke="var(--accent)" stroke-width="1.2">
+          <line x1="58" y1="50" x2="92" y2="50" />
+          <line x1="55.66" y1="55.66" x2="79.7" y2="79.7" />
+          <line x1="50" y1="58" x2="50" y2="92" />
+          <line x1="44.34" y1="55.66" x2="20.3" y2="79.7" />
+          <line x1="42" y1="50" x2="8" y2="50" />
+          <line x1="44.34" y1="44.34" x2="20.3" y2="20.3" />
+          <line x1="50" y1="42" x2="50" y2="8" />
+          <line x1="55.66" y1="44.34" x2="79.7" y2="20.3" />
+        </g>
+      </svg>
+      <div class="hero-inner">
+        <div class="eyebrow">A project, not a product</div>
+        <h1>Some wheels deserve reinventing.</h1>
+        <p class="lede">
+          A small, growing collection of apps that are free, don't want your account, and don't sell your data —
+          not as a gimmick, because the alternatives stopped being good enough.
+        </p>
+      </div>
+    </div>
+
+    <section id="apps" class="alt">
+      <div class="wrap">
+        <div class="section-label">THE APPS</div>
+        <h2>One so far. More on the way.</h2>
+        <p class="section-copy">Every app here follows the same rule: free, no account required to start, nothing tracked.</p>
+        <div class="app-card">
+          <div>
+            <div class="meta">
+              <h3>Setoff</h3>
+              <span class="status-chip">Live</span>
+            </div>
+            <p>Free offline packing lists, built from eight years of my own trip spreadsheets.</p>
+          </div>
+          <div class="cta">
+            <a class="btn btn-accent" href="https://setoff.at" target="_blank" rel="noopener">Visit setoff.at →</a>
+          </div>
+        </div>
+        <div class="whats-next">Next one's already in the works — built the same way.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-label">WHY THIS EXISTS</div>
+        <div class="manifesto">
+          <p>
+            I kept hitting the same wall. A genuinely useful app, free at first, then a paywall shows up. Or it
+            wants an account before I'm even allowed to try it. Or it's quietly selling what it learns about me.
+          </p>
+          <p>
+            So I started building the versions I actually wanted to use — free, no account unless the app genuinely
+            needs one, nothing sold. Setoff was the first. It won't be the last.
+          </p>
+          <div class="sign-off">— The person reinventing the wheel</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="wrap">
+        <div class="section-label">WHERE THE NEXT ONE COMES FROM</div>
+        <h2>Three places, so far</h2>
+        <div class="criteria">
+          <div class="criterion">
+            <span class="num mono">1</span>
+            <p>Apps I've personally given up on and replaced with my own spreadsheet or workaround.</p>
+          </div>
+          <div class="criterion">
+            <span class="num mono">2</span>
+            <p>Free tools that exist, but don't actually work well enough to trust.</p>
+          </div>
+          <div class="criterion">
+            <span class="num mono">3</span>
+            <p>Whatever you tell me is missing.</p>
+          </div>
+        </div>
+        <a class="tell-me" href="mailto:jspiliot@gmail.com?subject=An%20app%20idea%20for%20Reinventing%20the%20Wheel">Got an idea? Tell me →</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot-top">
+          <span>Reinventing the Wheel</span>
+          <div class="foot-links">
+            <a href="https://setoff.at" target="_blank" rel="noopener">Setoff</a>
+            <a href="mailto:jspiliot@gmail.com">Contact</a>
+          </div>
+        </div>
+        <div class="disclosure">No accounts. No tracking. No cookies — there's nothing on this page to disclose.</div>
+      </div>
+    </footer>
+  </body>
+</html>
