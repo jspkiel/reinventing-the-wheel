@@ -138,6 +138,14 @@
         .hero-motif { opacity: 0.12; }
       }
       .hero-inner { position: relative; max-width: 620px; }
+
+      .wheel-spin { transform-origin: 50px 50px; }
+      @media (prefers-reduced-motion: no-preference) {
+        .wheel-spin { animation: spin 120s linear infinite; }
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
       .eyebrow {
         display: inline-flex;
         align-items: center;
@@ -159,6 +167,7 @@
         text-wrap: balance;
       }
       .lede { font-size: 18px; color: var(--muted); max-width: 52ch; margin: 0; }
+      .lede strong { color: var(--fg); font-weight: 700; }
 
       section { padding: 64px 0; }
       section.alt { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -296,25 +305,27 @@
 
     <div class="wrap hero">
       <svg class="hero-motif" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--accent)" stroke-width="1.2" />
-        <circle cx="50" cy="50" r="10" fill="none" stroke="var(--accent)" stroke-width="1.2" />
-        <g stroke="var(--accent)" stroke-width="1.2">
-          <line x1="58" y1="50" x2="92" y2="50" />
-          <line x1="55.66" y1="55.66" x2="79.7" y2="79.7" />
-          <line x1="50" y1="58" x2="50" y2="92" />
-          <line x1="44.34" y1="55.66" x2="20.3" y2="79.7" />
-          <line x1="42" y1="50" x2="8" y2="50" />
-          <line x1="44.34" y1="44.34" x2="20.3" y2="20.3" />
-          <line x1="50" y1="42" x2="50" y2="8" />
-          <line x1="55.66" y1="44.34" x2="79.7" y2="20.3" />
+        <g class="wheel-spin">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="var(--accent)" stroke-width="1.2" />
+          <circle cx="50" cy="50" r="10" fill="none" stroke="var(--accent)" stroke-width="1.2" />
+          <g stroke="var(--accent)" stroke-width="1.2">
+            <line x1="58" y1="50" x2="92" y2="50" />
+            <line x1="55.66" y1="55.66" x2="79.7" y2="79.7" />
+            <line x1="50" y1="58" x2="50" y2="92" />
+            <line x1="44.34" y1="55.66" x2="20.3" y2="79.7" />
+            <line x1="42" y1="50" x2="8" y2="50" />
+            <line x1="44.34" y1="44.34" x2="20.3" y2="20.3" />
+            <line x1="50" y1="42" x2="50" y2="8" />
+            <line x1="55.66" y1="44.34" x2="79.7" y2="20.3" />
+          </g>
         </g>
       </svg>
       <div class="hero-inner">
         <div class="eyebrow">A project, not a product</div>
         <h1>Some wheels deserve reinventing.</h1>
         <p class="lede">
-          A small, growing collection of apps that are free, don't want your account, and don't sell your data —
-          not as a gimmick, because the alternatives stopped being good enough.
+          A small, growing collection of apps that are <strong>free</strong>, <strong>don't want your account</strong>,
+          and <strong>don't sell your data</strong> — not as a gimmick, because the alternatives stopped being good enough.
         </p>
       </div>
     </div>
