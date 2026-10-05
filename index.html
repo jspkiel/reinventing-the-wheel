@@ -139,12 +139,23 @@
       }
       .hero-inner { position: relative; max-width: 620px; }
 
+      /* Turns with scroll progress through the whole page — three full
+         rotations top-to-bottom. Native scroll-driven animation (zero JS,
+         runs off the main thread) where the browser supports it; a
+         rAF-driven scroll listener in the script below covers browsers
+         that don't yet (Safari, as of writing). Either way this entire
+         block is skipped under prefers-reduced-motion. */
       .wheel-spin { transform-origin: 50px 50px; }
       @media (prefers-reduced-motion: no-preference) {
-        .wheel-spin { animation: spin 120s linear infinite; }
+        @supports (animation-timeline: scroll()) {
+          .wheel-spin {
+            animation: wheel-scroll-spin auto linear;
+            animation-timeline: scroll(root);
+          }
+        }
       }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
+      @keyframes wheel-scroll-spin {
+        to { transform: rotate(1080deg); }
       }
       .eyebrow {
         display: inline-flex;
@@ -402,5 +413,36 @@
         <div class="disclosure">No accounts. No tracking. No cookies — there's nothing on this page to disclose.</div>
       </div>
     </footer>
+    <script>
+      // Scroll-driven wheel rotation for browsers without native
+      // animation-timeline support (Safari, as of writing) — the CSS
+      // above already handles this natively, with zero JS, wherever it
+      // can. Mirrors that CSS exactly: three full turns (1080deg) across
+      // the whole page's scroll range, skipped under reduced-motion.
+      (function () {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (CSS.supports && CSS.supports('animation-timeline', 'scroll()')) return;
+        var wheel = document.querySelector('.wheel-spin');
+        if (!wheel) return;
+        var ticking = false;
+        function update() {
+          var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          var progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+          wheel.style.transform = 'rotate(' + progress * 1080 + 'deg)';
+          ticking = false;
+        }
+        window.addEventListener(
+          'scroll',
+          function () {
+            if (!ticking) {
+              window.requestAnimationFrame(update);
+              ticking = true;
+            }
+          },
+          { passive: true }
+        );
+        update();
+      })();
+    </script>
   </body>
 </html>
